@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>糖尿病前期衛教單</title>
+  <style>
+    :root{
+      --bg:#f6fbff;
+      --card:#ffffff;
+      --primary:#1f7a8c;
+      --primary-dark:#145662;
+      --accent:#eaf7f8;
+      --text:#22313f;
+      --muted:#5c6b73;
+      --danger:#c0392b;
+      --ok:#2e7d32;
+      --shadow:0 10px 30px rgba(31,122,140,.12);
+      --radius:20px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg,#eef8fb 0%, #f9fcfd 100%);
+      line-height:1.75;
+    }
+    .container{
+      width:min(1080px, calc(100% - 32px));
+      margin:0 auto;
+    }
+    header.hero{
+      padding:48px 0 28px;
+    }
+    .hero-card{
+      background:linear-gradient(135deg,#1f7a8c 0%, #49a5b6 100%);
+      color:#fff;
+      border-radius:28px;
+      padding:36px 28px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-card:after{
+      content:"";
+      position:absolute;
+      right:-80px; top:-80px;
+      width:220px; height:220px;
+      background:rgba(255,255,255,.12);
+      border-radius:50%;
+    }
+    h1,h2,h3{margin:0 0 12px}
+    h1{font-size:clamp(28px,4vw,42px); line-height:1.25}
+    h2{font-size:clamp(22px,3vw,30px); color:var(--primary-dark)}
+    h3{font-size:20px; color:var(--primary-dark)}
+    .subtitle{font-size:18px; opacity:.95; max-width:760px}
+    .badge{
+      display:inline-block;
+      background:rgba(255,255,255,.18);
+      border:1px solid rgba(255,255,255,.25);
+      color:#fff;
+      padding:6px 12px;
+      border-radius:999px;
+      font-size:14px;
+      margin-bottom:12px;
+    }
+    main{padding-bottom:56px}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:20px;
+    }
+    .card{
+      grid-column:span 12;
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+    .col-7{grid-column:span 7}
+    .col-5{grid-column:span 5}
+    .col-6{grid-column:span 6}
+    .lead{
+      font-size:17px;
+      color:var(--muted);
+    }
+    .table{
+      width:100%;
+      border-collapse:collapse;
+      overflow:hidden;
+      border-radius:16px;
+      margin-top:12px;
+    }
+    .table th,.table td{
+      padding:14px 12px;
+      border-bottom:1px solid #e8eef0;
+      text-align:left;
+      vertical-align:top;
+    }
+    .table th{
+      background:#f0f8f9;
+      color:var(--primary-dark);
+      font-weight:700;
+    }
+    .pill-list,.check-list,.danger-list,.checklist{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:12px;
+    }
+    .pill-list li,.check-list li,.danger-list li,.checklist li{
+      background:#f8fbfc;
+      padding:14px 16px;
+      border-radius:16px;
+      border:1px solid #e7eff1;
+    }
+    .check-list li,.checklist li{
+      background:#f4fbf4;
+      border-color:#dcefdc;
+    }
+    .danger-list li{
+      background:#fff6f4;
+      border-color:#f5ddd7;
+    }
+    .kpi{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+      margin-top:16px;
+    }
+    .kpi .box{
+      background:var(--accent);
+      border-radius:18px;
+      padding:18px;
+    }
+    .kpi strong{
+      display:block;
+      font-size:28px;
+      color:var(--primary-dark);
+      line-height:1.2;
+    }
+    .plate{
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr;
+      gap:12px;
+      margin-top:14px;
+      align-items:stretch;
+    }
+    .plate div{
+      min-height:0;
+      border-radius:18px;
+      padding:18px 18px 16px;
+      color:#16343c;
+      font-weight:700;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:6px;
+      line-height:1.5;
+    }
+    .plate strong{
+      font-size:clamp(20px,2.2vw,28px);
+      line-height:1.2;
+    }
+    .plate span{
+      font-size:17px;
+      font-weight:600;
+    }
+    .veg{background:#dff4d8}
+    .protein{background:#ffe7b8}
+    .grain{background:#ffe0d4}
+    .do-dont{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-top:8px;
+    }
+    .choice-card{
+      border-radius:18px;
+      padding:18px;
+      border:2px solid #e6eef0;
+    }
+    .choice-card h4{
+      margin:0 0 10px;
+      font-size:22px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .choice-card ul{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:10px;
+    }
+    .choice-card li{
+      padding:10px 12px;
+      border-radius:14px;
+      font-weight:600;
+    }
+    .dont{
+      background:#fff8f7;
+      border-color:#f0cbc5;
+    }
+    .dont h4{color:#b33b2e}
+    .dont li{
+      background:#fff1ef;
+      border:1px solid #f4d5cf;
+    }
+    .do{
+      background:#f7fcf7;
+      border-color:#cfe4cf;
+    }
+    .do h4{color:#2e7d32}
+    .do li{
+      background:#edf8ed;
+      border:1px solid #d5ead5;
+    }
+    .tip{
+      background:#f1fbfd;
+      border-left:6px solid var(--primary);
+      padding:16px 18px;
+      border-radius:16px;
+      margin-top:14px;
+    }
+    .note{
+      color:var(--muted);
+      font-size:14px;
+    }
+    footer{
+      color:var(--muted);
+      text-align:center;
+      font-size:14px;
+      margin-top:26px;
+    }
+    .section-title{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:8px;
+    }
+    .icon{
+      width:40px; height:40px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:12px;
+      background:#ecf7f8;
+      color:var(--primary-dark);
+      font-size:20px;
+    }
+    @media (max-width: 820px){
+      .col-7,.col-5,.col-6{grid-column:span 12}
+      .kpi{grid-template-columns:1fr}
+      .plate{grid-template-columns:1fr}
+      .do-dont{grid-template-columns:1fr}
+      .hero-card{padding:28px 22px}
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <div class="hero-card">
+        <div class="badge">糖尿病前期衛教單</div>
+        <h1>提早發現、提早調整，降低未來罹患糖尿病的風險</h1>
+        <p class="subtitle">
+          糖尿病前期代表血糖高於正常，但尚未達糖尿病標準。透過飲食、運動與定期追蹤，多數人都能有效延緩或避免進展為第二型糖尿病。
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="grid">
+      <article class="card col-7">
+        <div class="section-title"><span class="icon">🩺</span><h2>什麼是糖尿病前期？</h2></div>
+        <p class="lead">
+          糖尿病前期是身體已經出現血糖偏高的警訊。雖然還沒有達到糖尿病診斷標準，但如果沒有及早改善，未來幾年內有相當比例會進展為第二型糖尿病。
+        </p>
+        <div class="tip">
+          及早開始生活型態調整，通常比等到確診後再處理更有效。
+        </div>
+      </article>
+
+      <article class="card col-5">
+        <div class="section-title"><span class="icon">🎯</span><h2>改善目標</h2></div>
+        <ul class="checklist">
+          <li><strong>體重減少 5–10%</strong>：可降低約 50–60% 發展為糖尿病的風險。</li>
+          <li><strong>每週運動 ≥130 分鐘</strong>：最好可達到 150 分鐘。</li>
+          <li><strong>飲食均衡</strong>：控制澱粉量，避免過多精緻澱粉與含糖飲料。</li>
+          <li><strong>定期追蹤血糖</strong>：持續觀察血糖變化，及早調整生活型態。</li>
+        </ul>
+      </article>
+
+      <article class="card col-6">
+        <div class="section-title"><span class="icon">📋</span><h2>診斷標準</h2></div>
+        <p class="lead">符合下列任一項，即可能屬於糖尿病前期：</p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>檢查項目</th>
+              <th>數值</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>空腹血糖</td>
+              <td>100–125 mg/dL</td>
+            </tr>
+            <tr>
+              <td>糖化血色素（HbA1c）</td>
+              <td>5.7–6.4%</td>
+            </tr>
+            <tr>
+              <td>口服葡萄糖耐受試驗（2 小時）</td>
+              <td>140–199 mg/dL</td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article class="card col-6">
+        <div class="section-title"><span class="icon">⚠️</span><h2>常見危險因子</h2></div>
+        <ul class="pill-list">
+          <li>體重過重或肥胖（BMI ≥ 24）</li>
+          <li>腰圍過粗（男 ≥ 90 公分，女 ≥ 80 公分）</li>
+          <li>久坐少運動</li>
+          <li>家族有糖尿病</li>
+          <li>高血壓、高血脂</li>
+          <li>曾有妊娠糖尿病</li>
+        </ul>
+      </article>
+
+      <article class="card col-7">
+        <div class="section-title"><span class="icon">🥗</span><h2>飲食原則</h2></div>
+        <h3>1. 控制澱粉份量</h3>
+        <ul class="check-list">
+          <li><strong>控量：</strong>每餐澱粉約一個拳頭量，白飯約 7–8 分滿；水果一天約兩個拳頭量。</li>
+          <li><strong>控質：</strong>優先選擇原型澱粉，避免精緻澱粉、零食、蛋糕、麵包與含糖飲料。</li>
+          <li><strong>建議食物：</strong>糙米、紫米、地瓜、燕麥。</li>
+        </ul>
+
+        <h3 style="margin-top:20px;">2. 採用健康餐盤法</h3>
+        <div class="plate">
+          <div class="veg">
+            <strong>1/2 盤</strong>
+            <span>蔬菜</span>
+          </div>
+          <div class="protein">
+            <strong>1/4 盤</strong>
+            <span>蛋白質</span>
+            <span>魚、雞胸、豆腐</span>
+          </div>
+          <div class="grain">
+            <strong>1/4 盤</strong>
+            <span>全穀雜糧</span>
+          </div>
+        </div>
+
+        <h3 style="margin-top:20px;">3. 減少糖分</h3>
+        <div class="do-dont">
+          <div class="choice-card dont">
+            <h4>✘ 不建議</h4>
+            <ul>
+              <li>手搖飲</li>
+              <li>果汁（即使無加糖）</li>
+              <li>三合一咖啡</li>
+              <li>含糖咖啡</li>
+            </ul>
+          </div>
+          <div class="choice-card do">
+            <h4>✔ 建議改喝</h4>
+            <ul>
+              <li>白開水</li>
+              <li>無糖茶</li>
+              <li>黑咖啡</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="card col-5">
+        <div class="section-title"><span class="icon">🏃</span><h2>運動建議</h2></div>
+        <ul class="check-list">
+          <li>每週至少 3 次，每次 30 分鐘。</li>
+          <li>以中等強度運動為主，例如快走、游泳、騎腳踏車、有氧運動。</li>
+          <li>運動時目標可達心跳每分鐘約 130 下。</li>
+          <li>以「有點喘，但還可以講話」的程度為佳。</li>
+          <li>每週再加入 2 次肌力訓練，效果更好。</li>
+        </ul>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
